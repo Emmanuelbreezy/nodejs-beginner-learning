@@ -1,0 +1,44 @@
+<%- include('../includes/head.ejs') %>
+<style>
+  .g-5{
+    --bs-gutter-x: 6rem!important;
+}
+</style>
+<body>
+   <%- include('../includes/navigation.ejs') %>
+    <main>
+        <div class="container">
+            <br />
+             <% if(prods.length > 0) { %>
+              <h1>Products</h1>
+              <br />
+             <div class="row g-5">
+              <% for(let product of prods) { %>
+              <div class="col-12 col-md-4 col-lg-3">
+                <div class="card" style="width: 18rem;">
+                  <a href="/product/_list/<%=product.id %>">
+                    <img src="<%= product.imageUrl %>"  class="card-img-top" style="height: 200px!important; object-fit: cover;" alt="...">
+                  </a>
+                  <div class="card-body">
+                    <a href="/product/_list/<%=product.id %>" class="" style="text-decoration:none;color: black;">
+                      <h5 class="card-title"><%= product.title %> </h5>
+                    </a>
+                    <p class="card-text"><%= product.description %></p>
+                    <div class="d-flex align-items-center justify-content-between">
+                      <span style="font-size: 17px; font-weight: bolder;"> $<%= product.price %></span>
+                      <%- include('../includes/add-to-cart.ejs', {product:product}) %>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <%}%>
+
+            </div>
+            <% }else{ %>
+               <h2>No Product Found</h2>
+              <% } %>
+        </div>
+    </main>
+</body>
+<script src="/static/js/bootstrap.js"></script>
+<%- include('../includes/end.ejs') %>

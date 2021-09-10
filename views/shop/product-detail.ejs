@@ -1,0 +1,36 @@
+<%- include('../includes/head.ejs') %>
+<body>
+   <%- include('../includes/navigation.ejs') %>
+   <main>
+    <div class="container">
+        <br />
+         <div>
+          <div class="col-12">
+            <div  class="row">
+              <div class="col-12 col-lg-5">
+                <img src="<%= product.imageUrl %>"  class="card-img-top" style="height: auto!important; object-fit: cover;" alt="...">
+              </div>
+              <div class="col-12 col-lg-7">
+                <h5 class="card-title"><%= product.title %> </h5>
+                <p class="card-text"><%= product.description %></p>
+                <div class="d-flex align-items-center">
+                  <span class="mr-5" style="font-size: 20px; color:red; text-decoration: strikethrough;margin-right: 0.8em;"> $<%= discountprice %></span>
+                  <span style="font-size: 37px; font-weight: 600;"> $<%= product.price %></span>
+              
+                </div>
+                <br/>
+                <br/>
+                
+                <div class="d-flex align-items-center justify-content-end">
+                  <%- include('../includes/add-to-cart.ejs') %>
+                  </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+        
+    </div>
+</main>
+</body>
+<%- include('../includes/end.ejs') %>

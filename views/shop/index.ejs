@@ -1,0 +1,60 @@
+<%- include('../includes/head.ejs') %>
+<style>
+    .g-5{
+      --bs-gutter-x: 6rem!important;
+}
+</style>
+<body>
+   <%- include('../includes/navigation.ejs') %>
+    <main>
+        <div class="w-100  text-white position-relative" style="height: 350px;
+        background-image: url('/static/images/bg-te.jpg'); 
+        background-repeat: no-repeat; background-origin: border-box; background-position: center;">
+        <div class="p-5">
+            <div class="w-25 mt-3 align-middle">
+                <form>
+                    <div class="form-group">
+                       <input class="form-control align-middle" type="text">
+                    </div>
+                </form>
+            </div>
+        </div>
+        </div>
+
+        <div class="w-100">
+            <div style="width: 90%; margin:0 auto; ">
+                <br />
+                <h2>Top Product</h2>
+             <% if(prods.length > 0) { %>
+              <br />
+             <div class="d-flex flex-nowrap align-items-center  g-4">
+              <% for(let product of prods) { %>
+              <div class="col-12 col-md-4 col-lg-3 ">
+                <div class="card mr-3" style="width: 18rem;">
+                  <a href="/product/_list/<%=product.id %>">
+                    <img src="<%= product.imageUrl %>"  class="card-img-top" style="height: 200px!important; object-fit: cover;" alt="...">
+                  </a>
+                  <div class="card-body">
+                    <a href="/product/_list/<%=product.id %>" class="" style="text-decoration:none;color: black;">
+                    <h5 class="card-title"><%= product.title %> </h5>
+                    </a>
+                    <p class="card-text"><%= product.description %></p>
+                     <div class="d-flex align-items-center justify-content-between">
+                       <span style="font-size: 17px; font-weight: bolder;"> $<%= product.price %></span>
+                       <%- include('../includes/add-to-cart.ejs', {product:product}) %>
+                     </div>
+                  </div>
+                </div>
+              </div>
+              <%}%>
+
+            </div>
+            <% }else{ %>
+               <h2>No Product Found</h2>
+              <% } %>
+        </div>
+    </div>
+    </main>
+</body>
+<script src="/static/js/bootstrap.js"></script>
+<%- include('../includes/end.ejs') %>

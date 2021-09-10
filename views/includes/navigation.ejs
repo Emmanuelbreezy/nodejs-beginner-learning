@@ -1,0 +1,35 @@
+<header>
+    <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm " style="z-index:999!important;">
+        <div class="container-fluid py-1">
+          <a class="navbar-brand " href="/" style="font-weight: bolder!important;">NVOLA</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNavDropdown">
+            <ul class="navbar-nav">
+              <li class="nav-item">
+                <a class="nav-link <%= path === '/'? 'active':null %>" aria-current="page" href="/">Shop</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link <%= path === '/products'? 'active': null %>" href="/products">Products</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link <%= path === '/order'? 'active': null %>" href="/order">Order</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link <%= path === '/admin/add-product'? 'active': null %>" href="/admin/add-product">Add Product</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link <%= path === '/admin/all-products'? 'active': null %>" href="/admin/all-products">Admin Products</a>
+              </li>
+           </ul>
+
+          </div>
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <a class="nav-link <%= path === '/cart' ? 'active': null %>" href="/cart">Cart</a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+</header>
