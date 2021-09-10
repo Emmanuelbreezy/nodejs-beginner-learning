@@ -14,22 +14,22 @@
                     <div class="card position-relative" >
                       <div class="card-body py-0 px-0 d-flex align-items-start">
                           <div class="im px-1">
-                            <a href="/product/_list/<%=p.productData.id %>">
-                              <img src="<%=p.productData.imageUrl %>" style="width: 100px; height: 130px;" />
+                            <a href="/product/_list/<%=p.id %>">
+                              <img src="<%=p.imageUrl %>" style="width: 100px; height: 130px;" />
                             </a>
                             </div>
 
                           <div class="pt-3" style="margin-left:0.8em;">
-                              <a href="/product/_list/<%=p.productData.id %>" class="" style="text-decoration:none;color: black;">
-                                <h5 class="card-title"><%= p.productData.title %> </h5>
+                              <a href="/product/_list/<%=p.cartItem.id %>" class="" style="text-decoration:none;color: black;">
+                                <h5 class="card-title"><%= p.title %> </h5>
                               </a>
-                              <p class="card-text"><%= p.productData.description %></p>
+                              <p class="card-text"><%= p.description %></p>
                                  
                           </div>
                       </div>
 
                       <form action="/cart-delete-item" method="post">
-                        <input type="hidden" name="productId" class=" d-none" value="<%=p.productData.id%>" />
+                        <input type="hidden" name="productId" class=" d-none" value="<%=p.id%>" />
                         <button class="position-absolute  btn top-0 start-100 translate-middle" style="background:transparent!important;">
                             <svg style="width: 25px; height: 25px;"  version="1.1" id="Circled_cross" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px"
                             y="0px" viewBox="0 0 20 20" enable-background="new 0 0 20 20" xml:space="preserve">
@@ -43,7 +43,7 @@
 
                       <button class="position-absolute  w-25  btn btn-info text-white" 
                       style="bottom:0px; right:0; border-top-right-radius: 0px; border-bottom-right-radius: 0px;">
-                          <%= p.qty %> Qty
+                          <%= p.cartItem.quantity %> Qty
                       </button>
                     </div>
                 </div>
