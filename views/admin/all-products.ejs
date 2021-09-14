@@ -24,7 +24,7 @@
                     <div class="d-flex align-items-center justify-content-between">
                       <span style="font-size: 17px; font-weight: bolder;"> $<%= product.price %></span>
                      <div class="d-flex align-items-center">
-                        <a href="/admin/edit-product/_update/<%= product.id %>?edit=true " class="btn btn-primary mr-1">
+                        <a href="/admin/edit-product/_update/<%= product._id %>?edit=true " class="btn btn-primary mr-1">
                           <svg style="width: 20px; height: 20px;" version="1.1" id="Edit" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
                           viewBox="0 0 20 20" enable-background="new 0 0 20 20" xml:space="preserve">
                        <path fill="#FFFFFF" d="M17.561,2.439c-1.442-1.443-2.525-1.227-2.525-1.227L8.984,7.264L2.21,14.037L1.2,18.799l4.763-1.01
@@ -36,7 +36,7 @@
                       </a>
                       <form action="/admin/delete-product" method="POST">
                         <input type="hidden" class="form-control d-none" name="productId"
-                        value="<%= product.id %>" />
+                        value="<%= product._id %>" />
                         <button type="submit" class="btn btn-danger ">
                           <svg style="width: 20px; height: 20px;" version="1.1" id="Trash" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
                                 viewBox="0 0 20 20" enable-background="new 0 0 20 20" xml:space="preserve">
