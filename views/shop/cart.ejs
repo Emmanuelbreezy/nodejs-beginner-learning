@@ -14,13 +14,13 @@
                     <div class="card position-relative" >
                       <div class="card-body py-0 px-0 d-flex align-items-start">
                           <div class="im px-1">
-                            <a href="/product/_list/<%=p.id %>">
+                            <a href="/product/_list/<%=p._id %>">
                               <img src="<%=p.imageUrl %>" style="width: 100px; height: 130px;" />
                             </a>
                             </div>
 
                           <div class="pt-3" style="margin-left:0.8em;">
-                              <a href="/product/_list/<%=p.cartItem.id %>" class="" style="text-decoration:none;color: black;">
+                              <a href="/product/_list/<%=p._id %>" class="" style="text-decoration:none;color: black;">
                                 <h5 class="card-title"><%= p.title %> </h5>
                               </a>
                               <p class="card-text"><%= p.description %></p>
@@ -43,7 +43,7 @@
 
                       <button class="position-absolute  w-25  btn btn-info text-white" 
                       style="bottom:0px; right:0; border-top-right-radius: 0px; border-bottom-right-radius: 0px;">
-                          <%= p.cartItem.quantity %> Qty
+                          <%= p.quantity %> Qty
                       </button>
                     </div>
                 </div>

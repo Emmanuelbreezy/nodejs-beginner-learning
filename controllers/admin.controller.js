@@ -51,6 +51,21 @@ exports.postAddProduct = (req,res,next) => {
     const imageUrl = req.body.imageUrl;
     const price = req.body.price;
     const description = req.body.description;
+    // from mongoose
+    const product = new Product({
+        title:title,
+        price:price,
+        description:description,
+        imageUrl:imageUrl
+    })
+    product.save()
+         .then(()=>{
+            res.redirect('/admin/all-products/u/')
+         })
+        .catch(err=>{
+            console.log(err);
+        });
+
     
     // USING SEQUELIZE TO MANAGE CREATE PRODUCT AND INSERT THE USER ID AUTOMATIC
     // req.user.createProduct({
@@ -60,16 +75,7 @@ exports.postAddProduct = (req,res,next) => {
     //     description:description,
     // })
     //USING MONGODB TO MANAGE CREATE PRODUCT
-
-    const product = new Product(title,price,description,imageUrl)
-    product.save()
-         .then(()=>{
-            res.redirect('/admin/all-products')
-         })
-        .catch(err=>{
-            console.log(err);
-        });
-
+   
      //OLD WAY OF CREATING PRODUCT WITHOUT USER ID
     // Product.create({
     //     title: title,
@@ -116,21 +122,22 @@ exports.postEditProduct = (req,res,next) => {
 }
 
 
-// exports.postDeleteProduct = (req,res,next) => {
-//     const prodId = req.body.productId;
-//     //Product.deleteById(prodId);
-//     Product.findByPk(prodId)
-//         .then(product => {
-//             console.log(product,'prod');
-//             return product.destroy();
-//         })
-//         .then(result=>{
-//             res.redirect('/admin/all-products');
-//         })
-//         .catch(err=>{
-//             console.log(err);
-//         })
-// }
+exports.postDeleteProduct = (req,res,next) => {
+    const prodId = req.body.productId;
+    Product.deleteById(prodId)
+            .then(result=>{
+                res.redirect('/admin/all-products');
+            })
+            .catch(err=>{
+                console.log(err);
+            })
+    //Product.findByPk(prodId)
+        // .then(product => {
+        //     console.log(product,'prod');
+        //     return product.destroy();
+        // })
+        
+}
 
 
 
