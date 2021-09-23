@@ -26,7 +26,9 @@
                     <p class="card-text"><%= product.description %></p>
                     <div class="d-flex align-items-center justify-content-between">
                       <span style="font-size: 17px; font-weight: bolder;"> $<%= product.price %></span>
-                      <%- include('../includes/add-to-cart.ejs', {product:product}) %>
+                      <% if (isAuthenticated) { %>
+                           <%- include('../includes/add-to-cart.ejs', {product:product}) %>
+                       <% } %>
                     </div>
                   </div>
                 </div>

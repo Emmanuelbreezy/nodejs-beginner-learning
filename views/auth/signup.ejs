@@ -1,0 +1,39 @@
+<%- include('../includes/head.ejs') %>
+<body>
+   <%- include('../includes/navigation.ejs') %>
+    <main>
+      <% if(errorMessage){ %>
+        <div class="alert alert-danger text-center" role="alert">
+          <%= errorMessage %>
+        </div>
+        <br />
+        <% } %> 
+
+        <div style="transform: translateY(20%); ">
+            <h3 class="text-center">Sign up your credentials</h3>
+            <br>
+            <div class="w-25 mx-auto">
+                <form action="/signup-form" method="POST" novalidate>
+                    <div class="mb-3">
+                      <label for="Email1" class="form-label">Email</label>
+                      <input type="email" class="form-control py-2" name="email" id="mail" aria-describedby="">
+                    </div>
+                    <div class="mb-3">
+                      <label for="password" class="form-label">Password</label>
+                      <input type="password" class="form-control py-2" name="password" id="pass" placeholder="">
+                    </div>
+                    <div class="mb-3">
+                        <label for="password" class="form-label">Confirm Password</label>
+                        <input type="password" class="form-control py-2" name="confirmPassword" id="con_pass" placeholder="">
+                      </div>
+    <input type="hidden" name="_csrf"  value="<%= csrfToken %>" />
+                   
+                    <button type="submit" class="btn w-100 btn-success">Create Account</button>
+                  </form>
+               
+            </div>
+
+        </div>
+    </main>
+</body>
+<%- include('../includes/end.ejs') %>

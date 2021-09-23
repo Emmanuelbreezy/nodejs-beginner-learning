@@ -13,22 +13,37 @@
               <li class="nav-item">
                 <a class="nav-link <%= path === '/products'? 'active': null %>" href="/products">Products</a>
               </li>
-              <li class="nav-item">
-                <a class="nav-link <%= path === '/order'? 'active': null %>" href="/order">Order</a>
-              </li>
+             <% if (isAuthenticated) { %>
               <li class="nav-item">
                 <a class="nav-link <%= path === '/admin/add-product'? 'active': null %>" href="/admin/add-product">Add Product</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link <%= path === '/admin/all-products'? 'active': null %>" href="/admin/all-products">Admin Products</a>
-              </li>
+              </li> 
+              <% } %>
            </ul>
 
           </div>
           <ul class="navbar-nav">
+           
+            <% if (isAuthenticated) { %>
+              <li class="nav-item">
+                <a class="nav-link <%= path === '/order'? 'active': null %>" href="/order">Order</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link <%= path === '/cart' ? 'active': null %>" href="/cart">Cart</a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link" href="/logout">Logout</a>
+              </li>
+              <% }else{ %>
             <li class="nav-item">
-              <a class="nav-link <%= path === '/cart' ? 'active': null %>" href="/cart">Cart</a>
+              <a class="nav-link <%= path === '/login' ? 'active': null %>" href="/login">Login</a>
             </li>
+            <li class="nav-item">
+              <a class="nav-link <%= path === '/signup' ? 'active': null %>" href="/signup">Signup</a>
+            </li>
+            <% } %>
           </ul>
         </div>
       </nav>

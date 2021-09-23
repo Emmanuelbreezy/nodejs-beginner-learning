@@ -22,7 +22,9 @@
                 <br/>
                 
                 <div class="d-flex align-items-center justify-content-end">
-                  <%- include('../includes/add-to-cart.ejs') %>
+                  <% if (isAuthenticated) { %>
+                    <%- include('../includes/add-to-cart.ejs') %>
+                  <% } %>
                   </div>
               </div>
             </div>

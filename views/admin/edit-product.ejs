@@ -28,6 +28,7 @@
                   </div>
                   <input type="hidden" class="form-control d-none" name="productId"
                     value="<%= product._id %>" />
+                   <input type="hidden" name="_csrf"  value="<%= csrfToken %>" />
                 <button type="submit" class="btn btn-primary">Update Product</button>
               </form>
            
