@@ -6,25 +6,54 @@
         <div class="alert alert-danger text-center" role="alert">
           <%= errorMessage %>
         </div>
-        <br />
         <% } %> 
-
         <div style="transform: translateY(20%); ">
             <h3 class="text-center">Sign up your credentials</h3>
             <br>
             <div class="w-25 mx-auto">
-                <form action="/signup-form" method="POST" novalidate>
+                <form class="needs-validation" action="/signup-form" method="POST" novalidate>
                     <div class="mb-3">
+
                       <label for="Email1" class="form-label">Email</label>
-                      <input type="email" class="form-control py-2" name="email" id="mail" aria-describedby="">
+                      <input type="email" 
+                          class="
+                          form-control py-2
+                          <%= validationErrors.find(e => e.param ==='email') ? 'is-invalid' : '' %>" 
+                          name="email" 
+                          id="mail" 
+                          aria-describedby="" value="<%= oldInput.email %>"/>
+
+                        <% if(validationErrors.find(e => e.param ==='email')){ %>
+                            <div class="invalid-feedback">Check your email</div>
+                          <% } %>
+                      
                     </div>
                     <div class="mb-3">
                       <label for="password" class="form-label">Password</label>
-                      <input type="password" class="form-control py-2" name="password" id="pass" placeholder="">
+                      <input type="password" 
+                             class="
+                                form-control py-2
+                              <%= validationErrors.find(e => e.param ==='password') ? 'is-invalid' : '' %>" 
+                                 name="password" 
+                                 id="pass" 
+                                 placeholder="" 
+                                 value="<%= oldInput.password %>">
                     </div>
-                    <div class="mb-3">
-                        <label for="password" class="form-label">Confirm Password</label>
-                        <input type="password" class="form-control py-2" name="confirmPassword" id="con_pass" placeholder="">
+                    <% if(validationErrors.find(e => e.param ==='password')){ %>
+                      <div class="invalid-feedback">Check your password</div>
+                    <% } %>
+
+                     <div class="mb-3">
+                        <label for="confirmPassword" class="form-label">Confirm Password</label>
+                        <input type="password" 
+                              class="
+                              form-control py-2
+                              <%= validationErrors.find(e => e.param ==='confirmPassword') ? 'is-invalid' : '' %>" 
+                              name="confirmPassword" 
+                              id="con_pass" 
+                              placeholder="" 
+                              value="<%= oldInput.confirmPassword %>">
+
                       </div>
     <input type="hidden" name="_csrf"  value="<%= csrfToken %>" />
                    

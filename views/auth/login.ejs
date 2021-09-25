@@ -25,11 +25,22 @@
                     <input type="hidden" name="_csrf"  value="<%= csrfToken %>" />
                     <div class="mb-3">
                       <label for="Email1" class="form-label">Email</label>
-                      <input type="email" class="form-control py-2" name="email" id="" aria-describedby="">
+                      <input type="email" class="form-control py-2
+                      <%= validationErrors.find(e => e.param ==='email') ? 'is-invalid' : '' %>" 
+                       name="email" 
+                       id="" aria-describedby=""
+                       value="<%= oldInput.email %>"
+                       >
                     </div>
                     <div class="mb-3">
                       <label for="imageUrl" class="form-label">Password</label>
-                      <input type="password" class="form-control py-2" name="password" id="" placeholder="">
+                      <input type="password" class="form-control py-2  
+                      <%= validationErrors.find(e => e.param ==='password') ? 'is-invalid' : '' %>"
+                        name="password" 
+                        id="" 
+                        placeholder=""
+                        value="<%= oldInput.password %>"
+                        >
                     </div>
                     <div class="text-right">
                        <a href="/forget-password">Forget Password</a>
