@@ -12,10 +12,14 @@ router.get('/products',shopController.getProducts);
 router.get('/product/_list/:productId',shopController.getProduct);
 router.get('/cart',isAuth,shopController.getCart);
 
-// // router.get('/checkout',shopController.getCheckout);
-router.get('/order',isAuth,shopController.getOrders);
+router.get('/orders',isAuth,shopController.getOrders);
+router.get('/orders/:orderId',isAuth,shopController.getInvoice);
+router.get('/checkout',isAuth,shopController.getCheckout);
+router.get('/checkout/success',isAuth,shopController.getCheckoutSuccess);
+router.get('/checkout/cancel',isAuth,shopController.getCheckout);
 
-router.post('/create-order',isAuth,shopController.postOrder);
+
+// router.post('/create-order',isAuth,shopController.postOrder);
 router.post('/addcart',isAuth,shopController.postCart);
 router.post('/cart-delete-item',isAuth,shopController.postCartDelete);
 

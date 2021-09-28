@@ -33,17 +33,29 @@ const adminRoutes = require('./routes/admin.routes');
 const shopRoutes = require('./routes/shop.routes');
 
 const fileStorage = multer.diskStorage({
-    destination: (req, file, callback) => {
-        callback(null, 'images');
+    destination: (req, file, cb) => {
+        cb(null,  path.join('images'));
     },
-    filename: (req, file, callback) => {
-        callback(null,file.filename + '-' + file.originalname);
+    filename: (req, file, cb) => {
+        cb(null, new Date().toISOString().replace(/:/g, '-') +'-'+ file.originalname);
     }
 })
 
+const fileFilter = (req, file,cb) => {
+    if(file.mimetype === 'image/png' || file.mimetype === 'image/jpg' || file.mimetype){
+        cb(null, true);
+    }else{
+        cb(null, false);
+    }
+    
+}
+
 app.use(bodyParser.urlencoded({extended: false}));
-app.use(multer({storage: fileStorage}).single('image'));
-app.use('/static',express.static(path.join(__dirname,'public')));
+app.use(multer({storage: fileStorage,fileFilter:fileFilter}).single('image'));
+
+app.use('/static',express.static(path.join(__dirname,'public'))); // serve the resource files
+app.use('/static/images',express.static(path.join(__dirname,'images'))); //serve the user image
+
 //session
 app.use(
     session({
@@ -89,14 +101,13 @@ app.use('/internal-error',errorController.get500);
 
 app.use(errorController.get404);
 
-app.use((error,req,res,next)=> {
-    //res.redirect('/internal-error');
-    res.status(500).render('500',{
-        pageTitle:'Internal Error',
-        path:'',
-        isAuthenticated: req.session.isLoggedIn,
-    });
-});
+// app.use((error,req,res,next)=> {
+//     res.status(500).render('500',{
+//         pageTitle:'Internal Error',
+//         path:'',
+//         isAuthenticated:true
+//     });
+// });  
 
 mongoose.connect((MONGODB_URI))
        .then(result => { 

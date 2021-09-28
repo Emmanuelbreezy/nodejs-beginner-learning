@@ -7,7 +7,7 @@
 <body>
    <%- include('../includes/navigation.ejs') %>
     <main>
-        <div class="container">
+        <div class="px-1">
             <br />
              <% if(prods.length > 0) { %>
               <h1>Products</h1>
@@ -17,7 +17,7 @@
               <div class="col-12 col-md-4 col-lg-3">
                 <div class="card" style="width: 18rem;">
                   <a href="/product/_list/<%=product._id %>">
-                    <img src="<%= product.imageUrl %>"  class="card-img-top" style="height: 200px!important; object-fit: cover;" alt="...">
+                    <img src="/static/<%= product.imageUrl %>"  class="card-img-top" style="height: 200px!important; object-fit: cover;" alt="...">
                   </a>
                   <div class="card-body">
                     <a href="/product/_list/<%=product._id %>" class="" style="text-decoration:none;color: black;">
@@ -36,6 +36,16 @@
               <%}%>
 
             </div>
+            <br />
+            <%- include('../includes/pagination.ejs', {
+              currentPage:currentPage,
+              hasNextPage:hasNextPage,
+              hasPreviousPage:hasPreviousPage,
+              nextPage:nextPage,
+              previousPage:previousPage,
+              lastPage:lastPage,
+            }) %>
+
             <% }else{ %>
                <h2>No Product Found</h2>
               <% } %>

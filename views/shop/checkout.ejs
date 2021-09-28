@@ -1,8 +1,61 @@
 <%- include('../includes/head.ejs') %>
+
 <body>
-   <%- include('../includes/navigation.ejs') %>
     <main>
-        <h1>Checkout</h1>
+      <br />
+     
+        <div class="container">
+          <h2 class="text-center">Checkout</h2>
+          <br />
+            <div class="row g-5">
+                
+                <% products.forEach(p=> {%>
+                <div class="col-12 col-md-6 col-lg-5">
+                    <div class="card position-relative" >
+                      <div class="card-body py-0 px-0 d-flex align-items-start">
+                          <div class="im px-1">
+                            <a href="/product/_list/<%=p.productId._id %>">
+                              <img src="/static/<%=p.productId.imageUrl %>" style="width: 100px; height: 130px;" />
+                            </a>
+                            </div>
+
+                          <div class="pt-3" style="margin-left:0.8em;">
+                              <a href="/product/_list/<%=p.productId._id %>" class="" style="text-decoration:none;color: black;">
+                                <h5 class="card-title"><%= p.productId.title %> </h5>
+                              </a>
+                              <p class="card-text"><%= p.productId.description %></p>
+                                 
+                          </div>
+                      </div>
+                      <button class="position-absolute  w-25  btn btn-danger text-white" 
+                      style="bottom:0px; right:0; border-top-right-radius: 0px; border-bottom-right-radius: 0px;">
+                          <%= p.quantity %> Qty
+                      </button>
+                    </div>
+                </div>
+                <%}) %>
+            </div>
+             <hr />
+             <br />
+           
+            <div class="d-grid gap-2 col-5 mx-auto">
+              <div><h4 class="text-center">Total: <%= totalSum %> </h4></div>
+
+              <button id="checkout__btn" class="btn btn-dark">
+                 Checkout
+              </button>
+             
+          </div>
+         </div>
     </main>
 </body>
+<script src="https://js.stripe.com/v3/"></script>
+<script>
+  var stripe = Stripe('pk_test_1GkR48vpsJHoy9sFhggE5NeH00NGeBMXqi');
+  var orderBtn = document.getElementById('checkout__btn').addEventListener('click',function(){
+    stripe.redirectToCheckout({
+        sessionId: '<%= sessionId %>'
+    });
+  })
+</script>
 <%- include('../includes/end.ejs') %>

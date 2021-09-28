@@ -7,16 +7,16 @@
 <body>
    <%- include('../includes/navigation.ejs') %>
     <main>
-        <div class="container">
+        <div class="px-2">
             <br />
              <% if(prods.length > 0) { %>
               <br />
-             <div class="row g-5">
+             <div class="row g-3">
               <% for(let product of prods) { %>
               <div class="col-12 col-md-4 col-lg-3">
                 <div class="card" style="width: 18rem;">
                   <a href="#">
-                    <img src="<%= product.imageUrl %>"  class="card-img-top" style="height: 200px!important; object-fit: cover;" alt="...">
+                    <img src="/static/<%= product.imageUrl %>"  class="card-img-top" style="height: 200px!important; object-fit: cover;" alt="...">
                   </a>
                   <div class="card-body">
                     <h5 class="card-title"><%= product.title %> </h5>
@@ -34,12 +34,11 @@
                        </svg>
                        
                       </a>
-                      <form action="/admin/delete-product" method="POST">
-    <input type="hidden" name="_csrf"  value="<%= csrfToken %>" />
+                      <input type="hidden" id="hidden__csrft" name="_csrf"  value="<%= csrfToken %>" />
 
-                        <input type="hidden" class="form-control d-none" name="productId"
+                        <input type="hidden" id="_identifier" class="form-control d-none" name="productId"
                         value="<%= product._id %>" />
-                        <button type="submit" class="btn btn-danger ">
+                        <button type="button" id="delete_btn_" onclick="delectProduct(this)" class="btn btn-danger ">
                           <svg style="width: 20px; height: 20px;" version="1.1" id="Trash" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
                                 viewBox="0 0 20 20" enable-background="new 0 0 20 20" xml:space="preserve">
                               <path fill="#FFFFFF" d="M3.389,7.113L4.49,18.021C4.551,18.482,6.777,19.998,10,20c3.225-0.002,5.451-1.518,5.511-1.979
@@ -49,7 +48,6 @@
                                 L7.932,4.34h-1.7c0,0,1.862-2.221,2.111-2.522C8.533,1.588,8.727,1.5,8.979,1.5h2.043c0.253,0,0.447,0.088,0.637,0.318
                                 C11.907,2.119,13.77,4.34,13.77,4.34H12.07z"/>
                               </svg>
-                       </button>
                         
                       </form>
 
@@ -69,4 +67,5 @@
     </main>
 </body>
 <script src="/static/js/bootstrap.js"></script>
+<script src="/static/js/admin.js"></script>
 <%- include('../includes/end.ejs') %>

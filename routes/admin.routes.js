@@ -11,6 +11,8 @@ const router = express.Router();
 
  router.post('/product',isAuth,adminController.postAddProduct);
  router.post('/edit-product/',isAuth,adminController.postEditProduct);
- router.post('/delete-product',isAuth,adminController.postDeleteProduct);
+
+ router.delete('/delete-product/:productId',isAuth,adminController.deleteProduct);
 
 module.exports = router;
+
